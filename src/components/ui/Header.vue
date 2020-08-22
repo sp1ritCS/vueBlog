@@ -1,6 +1,32 @@
 <template>
   <div>
-    <NavDrawer :drawer="drawer" />
+    <v-navigation-drawer v-model="drawer" app clipped>
+      <v-list dense :shaped="true" nav>
+        <v-list-item-group
+          v-model="currentPage"
+          :mandatory="true"
+          color="primary"
+        >
+          <v-list-item link @click="goto('/', 0)">
+            <v-list-item-action>
+              <v-icon>{{ icons[0] }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Blog posts</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link @click="goto('/about', 1)">
+            <v-list-item-action>
+              <v-icon>{{ icons[1] }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Settings</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+    <!-- <NavDrawer :drawer="drawer" /> -->
     <v-app-bar app color="primary" dark clipped-left>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <div class="d-flex align-center">
@@ -37,19 +63,26 @@
   </div>
 </template>
 
-<script>
-import NavDrawer from "@/components/ui/NavDrawer";
-export default {
+<script lang="ts">
+import Vue from "vue";
+import { mdiBookOpenBlankVariant, mdiRead } from "@mdi/js";
+export default Vue.extend({
   name: "Header",
-  components: {
-    NavDrawer
-  },
   data() {
     return {
-      drawer: false
+      drawer: false,
+      currentPage: 0,
+      icons: [mdiBookOpenBlankVariant, mdiRead]
     };
+  },
+  methods: {
+    goto(path: string, pos: number) {
+      this.$router.push(path, () => {
+        this.currentPage = pos;
+      });
+    }
   }
-};
+});
 </script>
 
 <style></style>

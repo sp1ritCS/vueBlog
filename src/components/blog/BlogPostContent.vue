@@ -3,7 +3,6 @@
     <p class="softtitle">{{ content.title }}</p>
     <div v-html="body"></div>
     <v-skeleton-loader v-if="body == null" ref="skeleton" type="article" />
-    <v-divider />
   </div>
 </template>
 
@@ -11,7 +10,7 @@
 import Vue from "vue";
 import { BlogPostContent } from "@/props/Blog";
 export default Vue.extend({
-  name: "BlogPostPreview",
+  name: "BlogEntry",
   data() {
     return {
       body: null as unknown
@@ -22,9 +21,7 @@ export default Vue.extend({
   },
   mounted() {
     this.content.body.then((body: any) => {
-      let prev = body.substring(0, 256);
-      if (prev !== body) prev += "...";
-      this.body = prev;
+      this.body = body;
     });
   }
 });

@@ -82,7 +82,6 @@ class BlogPost {
     );
     lt.push(sp);
     localStorage.setItem("postcache", JSON.stringify(lt));
-    console.log("Stored");
   }
   async fetchReq(uri: string) {
     const res = await fetch(uri);
