@@ -26,7 +26,12 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
+    "typeRoots": [
+      "./src/typings",
+      "./node_modules/@types/"
+    ],
+    "noImplicitAny": false
   },
   "include": [
     "src/**/*.ts",
