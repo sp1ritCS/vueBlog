@@ -12,6 +12,7 @@
     "@mdi/js": "^5.5.55",
     "@types/showdown": "^1.9.3",
     "core-js": "^3.6.5",
+    "filesize": "^6.1.0",
     "register-service-worker": "^1.7.1",
     "roboto-fontface": "*",
     "showdown": "^1.9.1",

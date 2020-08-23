@@ -15,12 +15,23 @@
               <v-list-item-title>Blog posts</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item link @click="goto('/about', 1)">
+          <v-list-item link @click="goto('/me', 1)">
             <v-list-item-action>
               <v-icon>{{ icons[1] }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>Settings</v-list-item-title>
+              <v-list-item-title>Contact Me</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+        <v-divider />
+        <v-list-item-group>
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>{{ icons[2] }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Clear cache</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -34,19 +45,20 @@
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="@/assets/logo.svg"
           transition="scale-transition"
           width="40"
         />
 
-        <v-img
+        <!-- <v-img
           alt="Vuetify Name"
           class="shrink mt-1 hidden-sm-and-down"
           contain
           min-width="100"
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
           width="100"
-        />
+        /> -->
+        <h2 class="shrink mt-1 hidden-sm-and-down">sp1rit's Blog</h2>
       </div>
 
       <v-spacer></v-spacer>
@@ -65,14 +77,22 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mdiBookOpenBlankVariant, mdiRead } from "@mdi/js";
+import {
+  mdiBookOpenBlankVariant,
+  mdiAccountCircleOutline,
+  mdiDeleteOutline
+} from "@mdi/js";
 export default Vue.extend({
   name: "Header",
   data() {
     return {
       drawer: false,
       currentPage: 0,
-      icons: [mdiBookOpenBlankVariant, mdiRead]
+      icons: [
+        mdiBookOpenBlankVariant,
+        mdiAccountCircleOutline,
+        mdiDeleteOutline
+      ]
     };
   },
   methods: {

@@ -1,4 +1,5 @@
 import showdown from "showdown";
+import xssFilter from "showdown-xss-filter";
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace GitHubResp {
@@ -93,5 +94,83 @@ class BlogPost {
   }
 }
 
+class GHPostList {
+  list: Promise<Array<GitHubResp.RootObject>>;
+  cachedList: Promise<Array<GitHubResp.RootObject>>;
+  constructor() {
+    const uri = "https://api.github.com/repos/sp1ritCS/blog/contents/content";
+    this.cachedList = new Promise(resolve => {
+      const cache = localStorage.getItem("postindexcache");
+      if (cache) {
+        resolve(JSON.parse(cache));
+      }
+    });
+    this.list = new Promise((resolve, reject) => {
+      this.queryGH(uri)
+        .then(ghPosts => {
+          resolve(ghPosts);
+        })
+        .catch(err => reject(`Error: HTTP ${err}`));
+    });
+  }
+  async queryGH(uri: string) {
+    const req = await fetch(uri);
+    if (req.ok) {
+      const parsed = await req.json();
+      localStorage.setItem("postindexcache", JSON.stringify(parsed));
+      return parsed;
+    } else {
+      throw req.status;
+    }
+  }
+  getPostById(id: string, list: Array<GitHubResp.RootObject>) {
+    return list.find(post => post.sha == id);
+  }
+  sortPostsByNewest(list: Array<GitHubResp.RootObject>) {
+    list.sort((a: GitHubResp.RootObject, b: GitHubResp.RootObject) => {
+      return Number(b.name.split(".")[0]) - Number(a.name.split(".")[0]);
+    });
+    return list;
+  }
+}
+
+class BlogPostFactory {
+  postcache: Array<StoredPost>;
+  converter: showdown.Converter;
+  constructor() {
+    (this.postcache = JSON.parse(localStorage.getItem("postcache") || "[]")),
+      (this.converter = new showdown.Converter({
+        parseImgDimensions: true,
+        simplifiedAutoLink: true,
+        excludeTrailingPunctuationFromURLs: true,
+        literalMidWordUnderscores: true,
+        strikethrough: true,
+        tables: true,
+        tablesHeaderId: true,
+        tasklists: true,
+        ghMentions: true,
+        smartIndentationFix: true,
+        simpleLineBreaks: true,
+        extensions: [xssFilter]
+      }));
+  }
+  createBlogPost(post: GitHubResp.RootObject) {
+    return new BlogPost(
+      post.sha,
+      post.name.split(".")[1],
+      post.download_url,
+      this.converter,
+      this.postcache
+    );
+  }
+}
+
 export default BlogPost;
-export { BlogPost, BlogPostContent, GitHubResp, StoredPost };
+export {
+  BlogPost,
+  BlogPostContent,
+  GitHubResp,
+  StoredPost,
+  GHPostList,
+  BlogPostFactory
+};
