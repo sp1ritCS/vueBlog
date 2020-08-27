@@ -48,6 +48,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { ShareablePlattform, socialFunctions } from "@/props/Share.ts";
+import settings from "@/props/Settings.ts";
 import { mdiContentCopy, mdiEmail } from "@mdi/js";
 export default Vue.extend({
   name: "Share",
@@ -110,7 +111,8 @@ export default Vue.extend({
         }
       ),
       openMastoIQ: false,
-      mastoInstance: localStorage.getItem("masto_instance") || "https://"
+      mastoInstance:
+        localStorage.getItem("masto_instance") || settings.defaultMastoInstance
     };
   },
   props: {
@@ -140,7 +142,7 @@ export default Vue.extend({
       const url = `${this.mastoInstance}share?text=${encodeURIComponent(
         `${
           this.title
-        }\n\n${`http://localhost:8080/read/${this.id}`}\n\nfrom @sp1rit@social.privacytools.io`
+        }\n\n${`${settings.root}/read/${this.id}`}\n\nfrom @sp1rit@social.privacytools.io`
       )}`;
       const win = window.open(url, "_blank");
       win?.focus;

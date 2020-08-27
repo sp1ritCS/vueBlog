@@ -10,17 +10,17 @@
           <v-expansion-panels>
             <v-expansion-panel>
               <v-expansion-panel-header>PGP ID</v-expansion-panel-header>
-              <v-expansion-panel-content>
-                {{ pgpMailId }}
-              </v-expansion-panel-content>
+              <v-expansion-panel-content>{{
+                pgpMailId
+              }}</v-expansion-panel-content>
             </v-expansion-panel>
             <v-expansion-panel>
               <v-expansion-panel-header
                 >PGP Fingerprint</v-expansion-panel-header
               >
-              <v-expansion-panel-content>
-                {{ pgpMailFinger }}
-              </v-expansion-panel-content>
+              <v-expansion-panel-content>{{
+                pgpMailFinger
+              }}</v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
         </v-card-text>
@@ -28,36 +28,46 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn text @click="pgpKeysDiag = false">
-            Close
-          </v-btn>
+          <v-btn text @click="pgpKeysDiag = false">Close</v-btn>
 
           <v-btn
             color="primary"
             outlined
             @click="downloadPubkey(pgpMailFinger, pgpMailPubkey)"
+            >Download Pubkey</v-btn
           >
-            Download Pubkey
-          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <v-img src="@/assets/sp1rit_scaled.svg" height="300px" light>
       <v-row class="fill-height">
         <v-card-title class="imgBtns">
-          <v-btn icon>
+          <v-btn icon @click="goHome()">
             <v-icon>{{ icons.back }}</v-icon>
           </v-btn>
 
           <v-spacer></v-spacer>
 
-          <v-btn icon class="mr-4">
+          <!-- <v-btn icon class="mr-4">
             <v-icon>{{ icons.edit }}</v-icon>
-          </v-btn>
+          </v-btn>-->
 
-          <v-btn icon>
-            <v-icon>{{ icons.menu }}</v-icon>
-          </v-btn>
+          <template>
+            <div class="text-center">
+              <v-menu offset-y>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn icon v-bind="attrs" v-on="on">
+                    <v-icon>{{ icons.menu }}</v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-title>Download as VCard</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </div>
+          </template>
         </v-card-title>
 
         <!-- <v-spacer></v-spacer> -->
@@ -69,6 +79,21 @@
         </v-card-title>
       </v-row>
     </v-img>
+    <v-list-item>
+      <v-list-item-icon>
+        <v-icon color="primary">{{ icons.socialBio }}</v-icon>
+      </v-list-item-icon>
+
+      <v-list-item-content>
+        <v-list-item-title>
+          Developer (Rust / ECMA / Linux), Security & Privacy contiuos.
+          <br />
+          <br />#freeculture, #foss
+        </v-list-item-title>
+        <v-list-item-subtitle>Biography</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+    <v-divider inset />
     <v-list two-line>
       <v-list-item @click="openURI(`https://sp1ritCS.github.io/me`)">
         <v-list-item-icon>
@@ -150,10 +175,9 @@
 
         <v-list-item-content>
           <v-list-item-title>c3Axcml0QGRpc3Jvb3Qub3JnCg==</v-list-item-title>
-          <v-list-item-subtitle
-            >Personal (only send encrypted), encoded in
-            base64</v-list-item-subtitle
-          >
+          <v-list-item-subtitle>
+            Personal (only send encrypted), encoded in base64
+          </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -188,9 +212,9 @@
 import Vue from "vue";
 import {
   mdiChevronLeft,
-  mdiPencil,
   mdiDotsVertical,
   mdiAccountCircleOutline,
+  mdiPencil,
   mdiWeb,
   mdiMastodon,
   mdiGit,
@@ -228,9 +252,9 @@ export default Vue.extend({
       ],
       icons: {
         back: mdiChevronLeft,
-        edit: mdiPencil,
         menu: mdiDotsVertical,
         account: mdiAccountCircleOutline,
+        socialBio: mdiPencil,
         socialWebsite: mdiWeb,
         socialMastodon: mdiMastodon,
         socialMatrix: `M 1.2293314,2.9999999e-8 V 24 H 3.5099889 V 23.450538 H 1.8618809 V 0.54932299 h 1.648108 V 2.9999999e-8 Z m 19.2605416,0 V 0.54932299 H 22.13812 V 23.450538 H 20.489873 V 24 h 2.280796 V 2.9999999e-8 Z M 10.860785,7.5776509 c -0.562792,0 -1.0624743,0.1216628 -1.4983565,0.3640809 C 8.9262617,8.1845782 8.5539706,8.5271299 8.2448553,8.968286 H 8.2118722 V 7.8093766 H 5.9934254 v 8.5592514 h 2.350802 v -4.966731 c 0,-0.419351 0.060685,-0.758545 0.1821796,-1.018064 C 8.6478299,10.124669 8.7937829,9.9259837 8.9650861,9.7878857 9.1360327,9.6501458 9.3127907,9.5561412 9.4949249,9.5064746 c 0.1819204,-0.049808 0.3281586,-0.074602 0.438679,-0.074602 0.3752421,0 0.6594051,0.063766 0.8525841,0.1902529 0.193108,0.1271233 0.331105,0.2955683 0.413906,0.5050645 0.08294,0.209854 0.129726,0.43891 0.140985,0.687385 0.01062,0.248189 0.01642,0.499394 0.01642,0.753213 v 4.800975 H 13.7083 v -4.767846 c 0,-0.264865 0.0192,-0.527104 0.05804,-0.786338 0.03854,-0.259521 0.115861,-0.491159 0.231725,-0.695596 0.115794,-0.2039387 0.275648,-0.3697302 0.480015,-0.4968535 0.204224,-0.126482 0.471976,-0.1902529 0.803039,-0.1902529 0.331062,0 0.593297,0.055534 0.786476,0.1654792 0.192894,0.1104491 0.339275,0.2595514 0.43868,0.4470292 0.09934,0.187906 0.159876,0.408518 0.182179,0.662195 0.02216,0.254032 0.03313,0.524437 0.03313,0.811249 v 4.850799 h 2.35108 V 10.64061 c 0,-0.552031 -0.07745,-1.0236233 -0.231865,-1.4158256 C 18.685949,8.8332959 18.470716,8.5159562 18.19502,8.2729682 17.91904,8.0301937 17.587942,7.853647 17.201869,7.7432689 c -0.386643,-0.1103776 -0.805862,-0.165618 -1.25842,-0.165618 -0.59614,0 -1.112158,0.1436567 -1.54804,0.4304679 C 13.959241,8.2950728 13.61446,8.6262386 13.360783,9.0014094 13.128983,8.4715385 12.78951,8.1020391 12.342441,7.8921858 11.895514,7.6826886 11.401489,7.5776509 10.860785,7.5776509 Z`,
@@ -270,6 +294,9 @@ export default Vue.extend({
     },
     base64Decode(ascii: string) {
       return atob(ascii);
+    },
+    goHome() {
+      this.$router.push("/");
     }
   }
 });

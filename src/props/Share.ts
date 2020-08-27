@@ -1,4 +1,4 @@
-const pageuri = "http://localhost:8080";
+import settings from "@/props/Settings.ts";
 
 interface ShareablePlattform {
   name: string;
@@ -13,7 +13,7 @@ const socialFunctions = {
     try {
       tel.type = "text";
       document.body.appendChild(tel);
-      tel.value = `${pageuri}/read/${id}`;
+      tel.value = `${settings.root}/read/${id}`;
       tel.select();
       const cr = document.execCommand("copy");
       document.body.removeChild(tel);
@@ -26,7 +26,7 @@ const socialFunctions = {
   },
   email(title: string, id: string): number {
     const win = window.open(
-      `mailto:?subject=${title}&body=${pageuri}/read/${id}`
+      `mailto:?subject=${title}&body=${settings.root}/read/${id}`
     );
     win?.close();
     return win ? +true : +false;
@@ -35,7 +35,7 @@ const socialFunctions = {
     const win = window.open(
       `https://share.diasporafoundation.org?title=${encodeURIComponent(
         title
-      )}&url=${encodeURIComponent(`${pageuri}/read/${id}`)}`,
+      )}&url=${encodeURIComponent(`${settings.root}/read/${id}`)}`,
       "_blank"
     );
     win?.focus();
@@ -45,7 +45,7 @@ const socialFunctions = {
     const win = window.open(
       `https://news.ycombinator.com/submitlink?t=${encodeURIComponent(
         title
-      )}&u=${encodeURIComponent(`${pageuri}/read/${id}`)}`,
+      )}&u=${encodeURIComponent(`${settings.root}/read/${id}`)}`,
       "_blank"
     );
     win?.focus();
@@ -55,7 +55,7 @@ const socialFunctions = {
     const win = window.open(
       `https://www.reddit.com/submit?title=${encodeURIComponent(
         title
-      )}&url=${encodeURIComponent(`${pageuri}/read/${id}`)}`,
+      )}&url=${encodeURIComponent(`${settings.root}/read/${id}`)}`,
       "_blank"
     );
     win?.focus();
@@ -65,7 +65,7 @@ const socialFunctions = {
     const win = window.open(
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(
         title
-      )}&url=${encodeURIComponent(`${pageuri}/read/${id}`)}&via=sp1ritCS`,
+      )}&url=${encodeURIComponent(`${settings.root}/read/${id}`)}&via=sp1ritCS`,
       "_blank"
     );
     win?.focus();
@@ -74,7 +74,7 @@ const socialFunctions = {
   linkedin(title: string, id: string): number {
     const win = window.open(
       `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
-        `${pageuri}/read/${id}`
+        `${settings.root}/read/${id}`
       )}&mini=true`,
       "_blank"
     );
@@ -85,7 +85,7 @@ const socialFunctions = {
     const win = window.open(
       `https://www.xing.com/app/user?op=share&title=${encodeURIComponent(
         title
-      )}&url=${encodeURIComponent(`${pageuri}/read/${id}`)}`,
+      )}&url=${encodeURIComponent(`${settings.root}/read/${id}`)}`,
       "_blank"
     );
     win?.focus();
@@ -94,7 +94,7 @@ const socialFunctions = {
   facebook(title: string, id: string): number {
     const win = window.open(
       `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
-        `${pageuri}/read/${id}`
+        `${settings.root}/read/${id}`
       )}`,
       "_blank"
     );
