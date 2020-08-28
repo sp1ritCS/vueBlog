@@ -22,7 +22,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { BlogPostContent } from "@/props/Blog";
-import Share from "@/components/Share.vue";
+import Share from "@/components/ui/Share.vue";
 import { mdiChevronRight } from "@mdi/js";
 export default Vue.extend({
   name: "BlogEntry",

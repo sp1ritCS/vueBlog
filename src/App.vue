@@ -6,6 +6,7 @@
       <v-container>
         <router-view />
       </v-container>
+      <div class="filler" />
       <Footer />
     </v-main>
   </v-app>
@@ -30,3 +31,10 @@ export default Vue.extend({
   data: () => ({})
 });
 </script>
+
+<style lang="scss" scoped>
+.filler {
+  display: block;
+  height: 56px;
+}
+</style>

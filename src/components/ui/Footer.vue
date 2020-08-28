@@ -8,11 +8,11 @@
     <template>
       <v-dialog v-model="licenseDiag" width="750px">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn text v-bind="attrs" v-on="on">Open Dialog</v-btn>
+          <v-btn text v-bind="attrs" v-on="on">License</v-btn>
         </template>
         <v-card>
           <v-card-title>
-            <span class="headline">vueBlog - LICENSE</span>
+            <!-- <span class="headline">vueBlog - LICENSE</span> -->
           </v-card-title>
           <v-card-text>
             <h1 id="gnu-affero-general-public-license">
