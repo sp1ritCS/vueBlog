@@ -19,5 +19,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           REPOSITORY_NAME: sp1ritCS/sp1ritCS.github.io
+          SINGLE_COMMIT: true
           BRANCH: master
           FOLDER: dist
