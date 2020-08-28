@@ -16,10 +16,15 @@ jobs:
           npm install
           npm run build
 
+      - name: Install SSH Client 🔑
+        uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          SSH: true
           REPOSITORY_NAME: sp1ritCS/sp1ritCS.github.io
           BRANCH: master
           FOLDER: dist
