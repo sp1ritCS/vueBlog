@@ -25,6 +25,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
           SSH: true
-          REPOSITORY_NAME: sp1ritCS/sp1ritCS.github.io
-          BRANCH: master
+          BRANCH: gh-pages
           FOLDER: dist
