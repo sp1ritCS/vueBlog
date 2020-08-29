@@ -4,6 +4,9 @@ module.exports = {
 		name: "sp1rit's Blog",
 		themeColor: "#1976d2",
 		msTileColor: "#1976d2",
-		appleMobileWebAppCapable: "yes"
+		appleMobileWebAppCapable: "yes",
+		manifestOptions: {
+		  background_color: "#ffffff"
+		}
 	}
 };
