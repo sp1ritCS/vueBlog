@@ -145,8 +145,8 @@ export default Vue.extend({
         }\n\n${`${settings.root}/read/${this.id}`}\n\nfrom @sp1rit@social.privacytools.io`
       )}`;
       const win = window.open(url, "_blank");
-      win?.focus;
       if (win) {
+        win.focus;
         this.shareSheet = false;
       }
     }

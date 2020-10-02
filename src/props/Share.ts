@@ -28,7 +28,9 @@ const socialFunctions = {
     const win = window.open(
       `mailto:?subject=${title}&body=${settings.root}/read/${id}`
     );
-    win?.close();
+    if (win) {
+			win.close();
+		}
     return win ? +true : +false;
   },
   diaspora(title: string, id: string): number {
@@ -38,7 +40,9 @@ const socialFunctions = {
       )}&url=${encodeURIComponent(`${settings.root}/read/${id}`)}`,
       "_blank"
     );
-    win?.focus();
+    if (win) {
+			win.focus();
+		}
     return win ? +true : +false;
   },
   hackernews(title: string, id: string): number {
@@ -48,7 +52,9 @@ const socialFunctions = {
       )}&u=${encodeURIComponent(`${settings.root}/read/${id}`)}`,
       "_blank"
     );
-    win?.focus();
+    if (win) {
+			win.focus();
+		}
     return win ? +true : +false;
   },
   reddit(title: string, id: string): number {
@@ -58,7 +64,9 @@ const socialFunctions = {
       )}&url=${encodeURIComponent(`${settings.root}/read/${id}`)}`,
       "_blank"
     );
-    win?.focus();
+    if (win) {
+			win.focus();
+		}
     return win ? +true : +false;
   },
   twitter(title: string, id: string): number {
@@ -68,7 +76,9 @@ const socialFunctions = {
       )}&url=${encodeURIComponent(`${settings.root}/read/${id}`)}&via=sp1ritCS`,
       "_blank"
     );
-    win?.focus();
+    if (win) {
+			win.focus();
+		}
     return win ? +true : +false;
   },
   linkedin(title: string, id: string): number {
@@ -78,7 +88,9 @@ const socialFunctions = {
       )}&mini=true`,
       "_blank"
     );
-    win?.focus();
+    if (win) {
+			win.focus();
+		}
     return win ? +true : +false;
   },
   xing(title: string, id: string): number {
@@ -88,7 +100,9 @@ const socialFunctions = {
       )}&url=${encodeURIComponent(`${settings.root}/read/${id}`)}`,
       "_blank"
     );
-    win?.focus();
+    if (win) {
+			win.focus();
+		}
     return win ? +true : +false;
   },
   facebook(title: string, id: string): number {
@@ -98,7 +112,9 @@ const socialFunctions = {
       )}`,
       "_blank"
     );
-    win?.focus();
+    if (win) {
+			win.focus();
+		}
     return win ? +true : +false;
   }
 };
