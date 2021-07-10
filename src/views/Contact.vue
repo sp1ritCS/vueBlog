@@ -86,7 +86,11 @@
 
       <v-list-item-content>
         <v-list-item-title>
-          Developer (Rust / ECMA / Linux), Security & Privacy contiuos.
+          Hi 👋, I'm sp1rit.<br/>
+          I mainly do higher level Rust development and RPM packaging, but I also do ECMA aswell as EDK2 stuff.<br/>
+          0x09 &gt; 0x20, fight me :D.<br>
+          <br/>
+          If you have any inquiries, please feel free to contact me.
           <br />
           <br />#freeculture, #foss
         </v-list-item-title>
