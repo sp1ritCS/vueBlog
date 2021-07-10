@@ -122,21 +122,21 @@
       </v-list-item>
 
       <v-divider inset />
-      <v-list-item @click="openURI(`https://matrix.to/#/@florian:librem.one`)">
+      <v-list-item @click="openURI(`https://matrix.to/#/@sp1rit:tchncs.de`)">
         <v-list-item-icon>
           <v-icon color="primary">{{ icons.socialMatrix }}</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>@florian:librem.one</v-list-item-title>
+          <v-list-item-title>@sp1rit:tchncs.de</v-list-item-title>
           <v-list-item-subtitle>Matrix</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item @click="openURI(`https://matrix.to/#/@spiritcs:matrix.org`)">
+      <v-list-item @click="openURI(`https://matrix.to/#/@sp1rit:opensuse.org`)">
         <v-list-item-action></v-list-item-action>
 
         <v-list-item-content>
-          <v-list-item-title>@spiritcs:matrix.org</v-list-item-title>
+          <v-list-item-title>@sp1rit:opensuse.org</v-list-item-title>
           <v-list-item-subtitle>Matrix - Fallback</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
