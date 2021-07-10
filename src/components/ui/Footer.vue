@@ -1,7 +1,7 @@
 <template>
   <v-footer absolute>
     <span>
-      &copy; 2020 -
+      &copy; 2020/21 -
       <strong>sp1rit</strong>
     </span>
     <v-spacer />
