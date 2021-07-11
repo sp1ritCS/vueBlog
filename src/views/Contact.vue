@@ -63,9 +63,7 @@
 									</v-btn>
 								</template>
 								<v-list>
-									<v-list-item
-										@click="openURI(`./sp1rit.vcf`)"
-									>
+									<v-list-item @click="openURI(`./sp1rit.vcf`)">
 										<v-list-item-title
 											>Download as
 											VCard</v-list-item-title
@@ -336,6 +334,9 @@ export default Vue.extend({
 			this.$router.push("/");
 		},
 	},
+	mounted: () => {
+		document.title = "About me × sp1rit's Blog`";
+	}
 });
 </script>
 

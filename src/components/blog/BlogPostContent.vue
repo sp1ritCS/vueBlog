@@ -57,6 +57,7 @@ export default Vue.extend({
 		content: BlogPostContent,
 	},
 	mounted() {
+		document.title = `${this.content.title} × sp1rit's Blog`;
 		this.content.body.then((body: any) => {
 			this.body = body;
 		});

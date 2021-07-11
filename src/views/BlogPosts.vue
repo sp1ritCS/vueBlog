@@ -59,6 +59,7 @@ export default Vue.extend({
     } */
 	},
 	mounted() {
+		document.title = "sp1rit's Blog"
 		this.getPosts();
 	},
 });
